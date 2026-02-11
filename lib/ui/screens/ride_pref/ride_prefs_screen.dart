@@ -1,11 +1,13 @@
-import 'package:blabla/model/ride_pref/ride_pref.dart';
-import 'package:blabla/services/ride_prefs_service.dart';
+import 'package:flutter/services.dart';
+
+import '/model/ride_pref/ride_pref.dart';
+import '/services/ride_prefs_service.dart';
 import 'package:flutter/material.dart';
-import '../../theme/theme.dart';
+import '/ui/theme/theme.dart';
 import 'widgets/ride_prefs_form.dart';
 import 'widgets/ride_prefs_tile.dart';
-
-const String blablaHomeImagePath = 'assets/images/blabla_home.png';
+import '../../widgets/actions/BlaButton.dart';
+const String blablaHomeImagePath = 'lib/assets/images/blabla_home.png';
 
 ///
 /// This screen allows user to:
@@ -51,12 +53,13 @@ class RidePrefsScreen extends StatelessWidget {
               // 2 - THE FORM
               RidePrefForm(initRidePref: RidePrefsService.selectedRidePref),
               SizedBox(height: BlaSpacings.m),
-
               // 3 - THE HISTORY
               _buildHistory(),
             ],
           ),
         ),
+        SizedBox(height: 100,),
+        Blabutton(icon: Icons.message, label: 'Contact Volodia', color: Colors.blue, onTap: () {print('Button tapped!');},),
       ],
     );
   }
