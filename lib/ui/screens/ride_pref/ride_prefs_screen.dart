@@ -1,5 +1,3 @@
-import 'package:flutter/services.dart';
-
 import '/model/ride_pref/ride_pref.dart';
 import '/services/ride_prefs_service.dart';
 import 'package:flutter/material.dart';
@@ -58,8 +56,7 @@ class RidePrefsScreen extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(height: 100,),
-        Blabutton(icon: Icons.message, label: 'Contact Volodia', color: Colors.blue, onTap: () {print('Button tapped!');},),
+        
       ],
     );
   }

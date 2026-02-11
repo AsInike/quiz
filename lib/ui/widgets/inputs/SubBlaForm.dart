@@ -1,43 +1,43 @@
 import 'package:flutter/material.dart';
 
-class Blabutton extends StatelessWidget {
+class SubBla extends StatelessWidget {
   final IconData? icon;
   final String label;
-  final Color color;
-  final VoidCallback onTap;
+  final VoidCallback? onTap; 
 
-  const Blabutton({
+  const SubBla({
     super.key,
     this.icon,
     required this.label,
-    required this.color,
-    required this.onTap,
+    this.onTap, 
   });
+
+  Color _textColor() {
+    return label.isEmpty ? Colors.grey : Colors.black;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
+    return InkWell(
+      onTap: onTap, // use the tap
+      borderRadius: BorderRadius.circular(8),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
         decoration: BoxDecoration(
-          color: color,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             if (icon != null) ...[
-              Icon(icon, color: Colors.white),
+              Icon(icon, color: _textColor()),
               const SizedBox(width: 8),
             ],
-            Expanded(
-              child: Text(
-                label,
+            Text(
+                label.isEmpty ? 'No location' : label,
                 textAlign: TextAlign.center,
-                style: const TextStyle(color: Colors.white),
+                style: TextStyle(color: _textColor()),
               ),
-            ),
           ],
         ),
       ),
