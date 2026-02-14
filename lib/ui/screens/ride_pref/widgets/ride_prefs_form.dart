@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:quiz/ui/widgets/actions/BlaButton.dart';
-import '../../../widgets/inputs/SubBlaForm.dart';
 import '../../../../model/ride/locations.dart';
 import '../../../../model/ride_pref/ride_pref.dart';
+import '../../../widgets/inputs/SubBlaForm.dart';
 
 class RidePrefForm extends StatefulWidget {
   final RidePref? initRidePref;
@@ -14,20 +14,17 @@ class RidePrefForm extends StatefulWidget {
 }
 
 class _RidePrefFormState extends State<RidePrefForm> {
-  Location departure = Location(
-    name: "Toulouse",
-    country: Country.france,
-  );
-  Location arrival = Location(
-    name: "Bordeaux, France",
-    country: Country.france,
-  );
+  Location? departure;
+  Location? arrival;
+
   late DateTime departureDate;
   late int seat;
 
   @override
   void initState() {
     super.initState();
+    departure = null;
+    arrival = null;
     departureDate = DateTime.now();
     seat = 1;
   }
@@ -39,7 +36,7 @@ class _RidePrefFormState extends State<RidePrefForm> {
       arrival = temp;
     });
   }
-
+   
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -47,7 +44,6 @@ class _RidePrefFormState extends State<RidePrefForm> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          // Swap arrow aligned to top-right
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -63,29 +59,27 @@ class _RidePrefFormState extends State<RidePrefForm> {
           ),
           const SizedBox(height: 16),
 
-          SubBla(icon: Icons.location_city, label: departure.name),
-          const SizedBox(height: 12),
+          SubBla(icon: Icons.place,label: departure?.name),
+          const SizedBox(height: 12,child: Divider()),
 
-          SubBla(icon: Icons.location_city, label: arrival.name),
-          const SizedBox(height: 12),
+          SubBla(icon: Icons.place,label: arrival?.name),
+          const SizedBox(height: 12,child: Divider()),
 
           SubBla(
-            icon: Icons.punch_clock,
+            icon: Icons.calendar_month,
             label:
                 "${departureDate.day}/${departureDate.month}/${departureDate.year}",
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 12,child: Divider()),
 
-          SubBla(icon: Icons.people, label: "$seat"),
+          SubBla(icon: Icons.person, label: "$seat"),
           const SizedBox(height: 30),
 
           Blabutton(
-            label: 'Contact Volodia',
+            label: 'Search',
             color: Colors.blue,
             onTap: () {
-              print("Departure: ${departure.name}");
-              print("Arrival: ${arrival.name}");
-              print("Date: $departureDate");
+              print("tab");
             },
           ),
         ],
